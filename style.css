@@ -14,7 +14,14 @@ body {
 }
 
 .title {
+  padding: 10px;
   text-align: center;
+}
+.volume {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  cursor: pointer;
 }
 
 .board {
@@ -99,11 +106,14 @@ body {
 
 .winning-message {
   margin-top: 0px;
-  visibility: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.hide {
+  display: none;
 }
 .winning-message button {
   font-size: 2rem;
@@ -117,4 +127,59 @@ body {
   background-color: black;
   color: white;
   border-color: white;
+}
+
+.material-icons-outlined.md-48 {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 48px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.scores {
+  margin: 0px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 2rem;
+}
+.score-x,
+.score-o,
+.score-tie {
+  margin-top: 10px;
+  text-align: center;
+}
+.player1,
+.tie,
+.player2 {
+  margin-right: 35px;
+}
+
+@media (max-width: 400px) {
+  .scores {
+    font-size: large;
+    font-weight: bold;
+  }
 }

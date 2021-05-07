@@ -1,10 +1,31 @@
 const X_CLASS = 'x'
 const O_CLASS = 'o'
+window.localStorage.setItem('muted', false)
+window.localStorage.setItem('scorex', 0)
+window.localStorage.setItem('scoreo', 0)
+window.localStorage.setItem('scoretie', 0)
 const cellElements = document.querySelectorAll('[data-cell]')
 const winningMessage = document.querySelector('[data-winning-message]')
 const message = document.querySelector('.winning-message')
 const restart = document.querySelector('.restart')
+const volume = document.querySelector('.volume')
+const scorex = document.querySelector('.score-x')
+const scoreo = document.querySelector('.score-o')
+const scoretie = document.querySelector('.score-tie')
+
 var circleTurn
+var audio = new Audio('clicksoundeffect.mp3')
+
+function setVolume(e) {
+  if (e.target.innerText == 'volume_off') {
+    e.target.innerText = 'volume_up'
+    window.localStorage.setItem('muted', false)
+  } else if (e.target.innerText == 'volume_up') {
+    e.target.innerText = 'volume_off'
+    window.localStorage.setItem('muted', true)
+  }
+}
+volume.addEventListener('click', setVolume)
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
@@ -28,7 +49,7 @@ function startGame() {
     cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, { once: true })
   })
-  message.style.visibility = 'hidden'
+  message.classList.add('hide')
 }
 
 //cellElements.forEach((cell) => {
@@ -36,6 +57,10 @@ function startGame() {
 //})
 
 function handleClick(e) {
+  let Volume = localStorage.getItem('muted')
+  if (Volume === 'false') {
+    audio.play()
+  }
   const cell = e.target
   const currentClass = circleTurn ? O_CLASS : X_CLASS
   //placeMark
@@ -72,10 +97,32 @@ function checkWin(currentClass) {
 
 function endGame(draw) {
   if (draw) {
+    let scoreTie = localStorage.getItem('scoretie')
+    scoreTie = parseInt(scoreTie)
+    scoreTie += 1
+    scoretie.innerText = scoreTie
+    console.log(scoreTie)
+    localStorage.setItem('scoretie', scoreTie)
     winningMessage.innerText = 'Draw'
+    message.classList.remove('hide')
   } else {
     winningMessage.innerText = `${circleTurn ? "O 's" : "X 's"} WIN`
-    message.style.visibility = 'visible'
+    message.classList.remove('hide')
+    if (circleTurn) {
+      let scoreO = localStorage.getItem('scoreo')
+      scoreO = parseInt(scoreO)
+      scoreO += 1
+      scoreo.innerText = scoreO
+      console.log(scoreO)
+      localStorage.setItem('scoreo', scoreO)
+    } else {
+      let scoreX = localStorage.getItem('scorex')
+      scoreX = parseInt(scoreX)
+      scoreX += 1
+      scorex.innerText = scoreX
+      console.log(scoreX)
+      localStorage.setItem('scorex', scoreX)
+    }
   }
 }
 

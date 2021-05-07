@@ -4,11 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Tic-Tac-Toe</title>
   </head>
   <body>
     <h1 class="title">Tic - Tac - Toe</h1>
+    <div class="volume">
+      <span class="material-icons-outlined md-48"> volume_up </span>
+    </div>
     <div class="board">
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
@@ -20,9 +27,27 @@
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
     </div>
-    <div class="winning-message">
+    <div class="winning-message hide">
       <h2 data-winning-message></h2>
       <button class="restart">Restart</button>
+    </div>
+    <div class="scores">
+      <div class="player1">
+        <div>Player1 (X)</div>
+        <div class="score-x">0</div>
+      </div>
+      <div class="tie">
+        <div>Tie</div>
+        <div class="score-tie">0</div>
+      </div>
+      <div class="player2">
+        <div>Player2 (O)</div>
+        <div class="score-o">0</div>
+      </div>
+      <div class="icon">
+        <span class="material-icons-outlined md-48"> group </span>
+        <div>2P</div>
+      </div>
     </div>
   </body>
   <script src="script.js"></script>
